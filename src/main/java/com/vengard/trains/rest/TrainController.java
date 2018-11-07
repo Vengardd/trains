@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ConcurrentModificationException;
-
 @RestController
 public class TrainController {
 
@@ -26,11 +24,5 @@ public class TrainController {
     public Train addTrain(@RequestBody Train train) {
         return trainService.addTrain(train);
     }
-
-    @GetMapping("/api/shortest_rules")
-    public Connection getConnection() {
-        return new Connection();
-    }
-
 
 }
