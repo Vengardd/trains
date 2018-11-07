@@ -1,21 +1,24 @@
 package com.vengard.trains.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddTrainModel {
 
-    private Train train;
+    private List<String> train = new ArrayList<>();
 
     public AddTrainModel() {
     }
 
-    public AddTrainModel(Train train) {
-        this.train = train;
-    }
-
-    public Train getTrain() {
+    public List<String> getTrain() {
         return train;
     }
 
-    public void setTrain(Train train) {
+    public void setTrain(List<String> train) {
+        this.train = train;
+    }
+
+    public AddTrainModel(List<String> train) {
         this.train = train;
     }
 }
