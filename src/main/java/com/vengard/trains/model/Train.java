@@ -3,11 +3,15 @@ package com.vengard.trains.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddTrainModel {
+public class Train {
 
     private List<String> train = new ArrayList<>();
 
-    public AddTrainModel() {
+    public Train() {
+    }
+
+    public Train(List<String> train) {
+        this.train = train;
     }
 
     public List<String> getTrain() {
@@ -15,10 +19,6 @@ public class AddTrainModel {
     }
 
     public void setTrain(List<String> train) {
-        this.train = train;
-    }
-
-    public AddTrainModel(List<String> train) {
         this.train = train;
     }
 }
