@@ -24,4 +24,9 @@ public class TrainRepositoryInMemory implements TrainRepository {
             return Optional.of(train);
         return Optional.empty();
     }
+
+    @Override
+    public Iterable<Train> findAll() {
+        return trainList;
+    }
 }

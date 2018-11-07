@@ -1,6 +1,8 @@
 package com.vengard.trains.rest;
 
 import com.vengard.trains.model.Connection;
+import com.vengard.trains.service.ConnectionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConnectionController {
 
-
+    @Autowired
+    private ConnectionService connectionService;
 
     @GetMapping("/api/shortest_rules")
     public Connection getConnection(@RequestParam("start") String start, @RequestParam("destination") String destination) {
-        return new Connection();
+        return connectionService.createConnection(start, destination);
     }
 
 }

@@ -7,6 +7,8 @@ import com.vengard.trains.repository.TrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TrainService {
 
@@ -19,6 +21,15 @@ public class TrainService {
         if(train.getTrain().get(0).equals(train.getTrain().get(1))) //ToDo better handle this exception
             throw new SameConnectionException();
         return trainRepository.addTrain(train);
+    }
+
+    public Optional<String> findCityInTrains(String city) {
+        for (Train t:
+             trainRepository.findAll()) {
+            if(t.getTrain().contains(city))
+                return Optional.of(city);
+        }
+        return Optional.empty();
     }
 
 }
