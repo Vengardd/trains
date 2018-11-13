@@ -31,4 +31,12 @@ public class Connection {
     public void setDistance(int distance) {
         this.distance = distance;
     }
+
+    @Override
+    public String toString() {
+        return "Connection{" +
+                "routes=" + routes +
+                ", distance=" + distance +
+                '}';
+    }
 }

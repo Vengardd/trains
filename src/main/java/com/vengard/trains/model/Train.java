@@ -6,21 +6,28 @@ import java.util.Objects;
 
 public class Train {
 
-    private List<String> train = new ArrayList<>();
+    private List<City> train = new ArrayList<>();
 
     public Train() {
     }
 
-    public Train(List<String> train) {
+    public Train(List<City> train) {
         this.train = train;
     }
 
-    public List<String> getTrain() {
+    public List<City> getTrain() {
         return train;
     }
 
-    public void setTrain(List<String> train) {
+    public void setTrain(List<City> train) {
         this.train = train;
+    }
+
+    @Override
+    public String toString() {
+        return "Train{" +
+                "train=" + train +
+                '}';
     }
 
     @Override
