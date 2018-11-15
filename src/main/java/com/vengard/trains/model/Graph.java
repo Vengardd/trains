@@ -8,9 +8,10 @@ public class Graph {
 
     private Map<City, List<City>> trainConnections = new HashMap<>();
 
-    public static void main(String[] args) {
-        Graph graph = new Graph();
+    public static Graph graph;
 
+    static {
+        graph = new Graph();
         City krakow = new City("krakow");
         City wawa = new City("wawa");
         City gdansk = new City("gdansk");
@@ -89,8 +90,12 @@ public class Graph {
         list.add(t9);
 
         graph.setTrainConnectionsFromTrains(list);
+    }
 
-        System.out.println(graph.getAllShortestPathsAndDistance(krakow, wroclaw));
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+
+//        System.out.println(graph.getAllShortestPathsAndDistance(krakow, wroclaw));
     }
 
     public void setTrainConnectionsFromTrains(List<Train> trains) {
