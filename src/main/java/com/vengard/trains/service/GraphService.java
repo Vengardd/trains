@@ -76,7 +76,10 @@ public class GraphService {
         l9.add(wroclaw);
         lanieta.getAdjacentyList().add(wroclaw);
 
-
+        List<City> l10 = new ArrayList<>();
+        l10.add(wroclaw);
+        l10.add(krakow);
+        wroclaw.getAdjacentyList().add(krakow);
 
         Train t1 = new Train(l1);
         Train t2 = new Train(l2);
@@ -87,6 +90,7 @@ public class GraphService {
         Train t7 = new Train(l7);
         Train t8 = new Train(l8);
         Train t9 = new Train(l9);
+        Train t10 = new Train(l10);
 
 
         List<Train> list = new ArrayList<>();
@@ -99,6 +103,7 @@ public class GraphService {
         list.add(t7);
         list.add(t8);
         list.add(t9);
+        list.add(t10);
 
         setTrainConnectionsFromTrains(list);
         return findShortestPathAlgorithm.findShortestPath(graph, krakow, wroclaw);
