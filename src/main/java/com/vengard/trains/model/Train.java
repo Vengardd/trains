@@ -26,7 +26,7 @@ public class Train {
     @Override
     public String toString() {
         return "Train{" +
-                "train=" + train +
+//                "train=" + train +
                 '}';
     }
 

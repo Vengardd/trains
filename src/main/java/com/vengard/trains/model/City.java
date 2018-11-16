@@ -1,13 +1,18 @@
 package com.vengard.trains.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class City {
 
     private String name;
+    @JsonIgnore
     private List<City> adjacentyList = new LinkedList<>();
+    @JsonIgnore
     private Integer distance = Integer.MAX_VALUE;
+    @JsonIgnore
     private List<City> shortestPath = new LinkedList<>();
 
     public City(String name) {
@@ -49,7 +54,7 @@ public class City {
     @Override
     public String toString() {
         return "City{" +
-                "name='" + name + '\'' +
+//                "name='" + name + '\'' +
                 '}';
     }
 }

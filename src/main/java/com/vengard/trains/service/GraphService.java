@@ -4,6 +4,8 @@ import com.vengard.trains.model.City;
 import com.vengard.trains.model.Connection;
 import com.vengard.trains.model.Graph;
 import com.vengard.trains.model.Train;
+import com.vengard.trains.service.algorithm.FindShortesPathAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +13,9 @@ import java.util.List;
 
 @Service
 public class GraphService {
+
+    @Autowired
+    private FindShortesPathAlgorithm findShortestPathAlgorithm;
 
     private Graph graph = new Graph();
 
@@ -93,7 +98,8 @@ public class GraphService {
         list.add(t9);
 
         graph.setTrainConnectionsFromTrains(list);
-        return graph.getAllShortestPathsAndDistance(start, destination);
+
+        return findShortestPathAlgorithm.findShortestPath(graph, krakow, wroclaw);
     }
 
 }
