@@ -26,7 +26,7 @@ public class TrainRepositoryInMemory implements TrainRepository {
     }
 
     @Override
-    public Iterable<Train> findAll() {
+    public List<Train> findAll() {
         return trainList;
     }
 }

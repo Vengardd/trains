@@ -7,6 +7,7 @@ import com.vengard.trains.repository.TrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,10 @@ public class TrainService {
                 return Optional.of(city);
         }
         return Optional.empty();
+    }
+
+    public List<Train> findAll() {
+        return trainRepository.findAll();
     }
 
 }

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class GraphService {
@@ -17,9 +19,10 @@ public class GraphService {
     @Autowired
     private FindShortesPathAlgorithm findShortestPathAlgorithm;
 
-    private Graph graph = new Graph();
+    private static Graph graph = new Graph();
 
     public Connection findShortestPath(City start, City destination) {
+
         City krakow = new City("krakow");
         City wawa = new City("wawa");
         City gdansk = new City("gdansk");
@@ -97,9 +100,25 @@ public class GraphService {
         list.add(t8);
         list.add(t9);
 
-        graph.setTrainConnectionsFromTrains(list);
-
+        setTrainConnectionsFromTrains(list);
         return findShortestPathAlgorithm.findShortestPath(graph, krakow, wroclaw);
     }
+
+
+    public static void setTrainConnectionsFromTrains(List<Train> trains) {
+        Map<City, List<City>> trainConnections = new HashMap<>();
+        trains.forEach(t -> {
+            City start = t.getTrain().get(0);
+            City dest = t.getTrain().get(1);
+            if (!trainConnections.containsKey(start)) { //if this city doesnt exist, add it
+                List<City> list = new ArrayList<>();
+                list.add(dest);
+                trainConnections.put(start, list);
+            } else if (!trainConnections.get(start).contains(dest)) //if this road doesnt exists
+                trainConnections.get(start).add(dest);
+        });
+        graph.setTrainConnections(trainConnections);
+    }
+
 
 }

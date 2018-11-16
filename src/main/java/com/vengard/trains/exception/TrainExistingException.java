@@ -4,6 +4,6 @@ public class TrainExistingException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return "aa";
+        return "Takie polaczenie juz istnieje!";
     }
 }

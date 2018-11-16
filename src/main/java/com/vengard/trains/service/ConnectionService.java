@@ -16,9 +16,10 @@ public class ConnectionService {
     private GraphService graphService;
 
     public Connection createConnection(String start, String destination) {
-        City startCity= new City(trainService.findCityInTrains(start).orElseThrow(CityNotFoundException::new));
-        City destCity = new City(trainService.findCityInTrains(destination).orElseThrow(CityNotFoundException::new));
-        return graphService.findShortestPath(startCity, destCity);
+        graphService.setTrainConnectionsFromTrains(trainService.findAll());
+//        City startCity= new City(trainService.findCityInTrains(start).orElseThrow(CityNotFoundException::new));
+//        City destCity = new City(trainService.findCityInTrains(destination).orElseThrow(CityNotFoundException::new));
+        return graphService.findShortestPath(new City(start), new City(destination));
     }
 
 }

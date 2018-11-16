@@ -5,7 +5,6 @@ import com.vengard.trains.model.City;
 import com.vengard.trains.model.Connection;
 import com.vengard.trains.model.Graph;
 import com.vengard.trains.model.Train;
-import com.vengard.trains.service.algorithm.FindShortesPathAlgorithm;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

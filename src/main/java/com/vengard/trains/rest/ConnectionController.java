@@ -20,7 +20,7 @@ public class ConnectionController {
 
     @GetMapping("/api/shortest_rules")
     public Connection getConnection(@RequestParam("start") String start, @RequestParam("destination") String destination) {
-        return graphService.findShortestPath(new City(start), new City(destination));
+        return connectionService.createConnection(start, destination);
     }
 
 }
