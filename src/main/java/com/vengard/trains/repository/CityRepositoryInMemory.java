@@ -1,11 +1,13 @@
 package com.vengard.trains.repository;
 
 import com.vengard.trains.model.City;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository("CityRepositoryInMemory")
 public class CityRepositoryInMemory implements CityRepository {
 
     private static List<City> list = new ArrayList<>();

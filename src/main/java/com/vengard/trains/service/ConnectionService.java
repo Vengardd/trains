@@ -17,8 +17,8 @@ public class ConnectionService {
 
     public Connection createConnection(String start, String destination) {
         graphService.setTrainConnectionsFromTrains(trainService.findAll());
-//        City startCity= new City(trainService.findCityInTrains(start).orElseThrow(CityNotFoundException::new));
-//        City destCity = new City(trainService.findCityInTrains(destination).orElseThrow(CityNotFoundException::new));
+        City startCity = new City(trainService.findCityInTrains(start).orElseThrow(CityNotFoundException::new));
+        City destCity = new City(trainService.findCityInTrains(destination).orElseThrow(CityNotFoundException::new));
         return graphService.findShortestPath(new City(start), new City(destination));
     }
 
