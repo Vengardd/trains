@@ -1,6 +1,5 @@
 package com.vengard.trains.rest;
 
-import com.vengard.trains.model.Connection;
 import com.vengard.trains.model.Train;
 import com.vengard.trains.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
