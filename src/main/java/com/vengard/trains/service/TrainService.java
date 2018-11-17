@@ -16,11 +16,15 @@ public class TrainService {
     @Autowired
     private TrainRepository trainRepository;
 
+    @Autowired
+    private CityService cityService;
+
     public Train addTrain(Train train) {
         if(trainRepository.findTrain(train).isPresent())
             throw new TrainExistingException();
         if(train.getTrain().get(0).equals(train.getTrain().get(1))) //ToDo better handle this exception
             throw new SameConnectionException();
+        cityService.addCitiesFromTrain(train);
         return trainRepository.addTrain(train);
     }
 
