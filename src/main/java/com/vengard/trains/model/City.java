@@ -55,7 +55,7 @@ public class City {
     @Override
     public String toString() {
         return "City{" +
-//                "name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 
@@ -64,7 +64,7 @@ public class City {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city = (City) o;
-        return Objects.equals(name, city.name);
+        return Objects.equals(name.toLowerCase(), city.name.toLowerCase());
     }
 
     @Override

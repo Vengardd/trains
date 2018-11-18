@@ -21,7 +21,7 @@ public class FindShortestPathOwnBfs implements FindShortesPathAlgorithm {
         LinkedList<City> settledCities = new LinkedList<>();
         LinkedList<City> unsettledCities = new LinkedList<>();
         boolean foundedDestination = false;
-        int distance = 0;
+        int distance ;
 
         unsettledCities.add(start);
 

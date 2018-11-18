@@ -28,17 +28,4 @@ public class TrainService {
         return trainRepository.addTrain(train);
     }
 
-    public Optional<String> findCityInTrains(String city) {
-        for (Train t:
-             trainRepository.findAll()) {
-            if(t.getTrain().contains(city))
-                return Optional.of(city);
-        }
-        return Optional.empty();
-    }
-
-    public List<Train> findAll() {
-        return trainRepository.findAll();
-    }
-
 }

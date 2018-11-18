@@ -15,9 +15,6 @@ public class ConnectionController {
     @Autowired
     private ConnectionService connectionService;
 
-    @Autowired
-    private GraphService graphService;
-
     @GetMapping("/api/shortest_rules")
     public Connection getConnection(@RequestParam("start") String start, @RequestParam("destination") String destination) {
         return connectionService.createConnection(start, destination);

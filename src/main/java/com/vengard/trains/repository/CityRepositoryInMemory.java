@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository("CityRepositoryInMemory")
 public class CityRepositoryInMemory implements CityRepository {
 
-    private static List<City> list = new ArrayList<>();
+    private List<City> list = new ArrayList<>();
 
     @Override
     public City addCity(City city) {
@@ -19,14 +19,26 @@ public class CityRepositoryInMemory implements CityRepository {
     }
 
     @Override
-    public Optional<City> findCity(City city) {
-        if(list.contains(city))
-            return Optional.of(city);
+    public Optional<City> findCityByCity(City city) {
+        int i = list.indexOf(city);
+        if(i >= 0)
+            return Optional.of(list.get(i));
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<City> findCityByName(String name) {
+        City city = new City(name);
+        return findCityByCity(city);
     }
 
     @Override
     public List<City> findAll() {
         return list;
+    }
+
+    @Override
+    public void set(int index, City element) {
+        list.set(index, element);
     }
 }

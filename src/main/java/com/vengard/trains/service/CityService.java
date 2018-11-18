@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CityService {
@@ -16,8 +15,12 @@ public class CityService {
     @Autowired
     private CityRepository cityRepository;
 
-    public City findCityByName(City city) {
-        return cityRepository.findCity(city).orElseThrow(CityNotFoundException::new);
+    public City findCityByCity(City city) {
+        return cityRepository.findCityByCity(city).orElseThrow(CityNotFoundException::new);
+    }
+
+    public City findCityByCity(String name) {
+        return cityRepository.findCityByName(name).orElseThrow(CityNotFoundException::new);
     }
 
     public List<City> findAll() {
@@ -25,7 +28,7 @@ public class CityService {
     }
 
     public City addCity(City city) {
-        if (cityRepository.findCity(city).isPresent())
+        if (cityRepository.findCityByCity(city).isPresent())
             return null;
         return cityRepository.addCity(city);
     }
@@ -33,17 +36,19 @@ public class CityService {
     public void addCitiesFromTrain(Train train) {
         City start = addCity(train.getTrain().get(0));
         City dest = addCity(train.getTrain().get(1));
-        if (!start.equals(null)) {
-            if (!dest.equals(null))
+        if (start != null) {
+            if (dest != null)
                 start.getAdjacentyList().add(dest);
             else
-                start.getAdjacentyList().add(findCityByName(dest));
+                start.getAdjacentyList().add(findCityByCity(dest));
         } else {
-            start = findCityByName(start);
+            start = findCityByCity(train.getTrain().get(0));
             try {
-                dest = findCityByName(dest);
-                if(!start.getAdjacentyList().contains(dest))
+                dest = findCityByCity(train.getTrain().get(1));
+                if(!start.getAdjacentyList().contains(dest)) {
                     start.getAdjacentyList().add(dest);
+                    cityRepository.set(cityRepository.findAll().indexOf(train.getTrain().get(0)), start);
+                }
             } catch (CityNotFoundException e) {
                 start.getAdjacentyList().add(dest);
             }
