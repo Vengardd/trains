@@ -21,12 +21,37 @@ public class FindShortestPathOwnBfs implements FindShortesPathAlgorithm {
         LinkedList<City> settledCities = new LinkedList<>();
         LinkedList<City> unsettledCities = new LinkedList<>();
         boolean foundedDestination = false;
-        int distance ;
+        int distance;
 
-        unsettledCities.add(start);
+        init(graph, start, unsettledCities);
+        mainLoop(destination, settledCities, unsettledCities, foundedDestination);
+        getResult(destination, result, settledCities);
+        distance = setDistance(result);
 
-        graph.setTrainConnections(setDistanceInStartCity(graph.getTrainConnections(), start));
+        return new Connection(result, distance);
+    }
 
+    private int setDistance(List<Train> result) {
+        return result.get(0).getTrain().get(result.get(0).getTrain().size() - 1).getDistance();
+    }
+
+    private void getResult(City destination, List<Train> result, LinkedList<City> settledCities) {
+        for (City c :
+                settledCities) {
+            for (City cc :
+                    c.getAdjacentyList())
+                if (cc.getName().equals(destination.getName())) {
+                    Train train = new Train(c.getShortestPath());
+                    train.getTrain().add(c);
+                    train.getTrain().add(destination);
+                    result.add(train);
+                }
+        }
+        if (result.isEmpty())
+            throw new PathDoesntExistException();
+    }
+
+    private void mainLoop(City destination, LinkedList<City> settledCities, LinkedList<City> unsettledCities, boolean foundedDestination) {
         while (!unsettledCities.isEmpty()) {
             City currentCity = unsettledCities.getFirst();
             unsettledCities.remove(unsettledCities.getFirst());
@@ -43,22 +68,11 @@ public class FindShortestPathOwnBfs implements FindShortesPathAlgorithm {
             }
             settledCities.add(currentCity);
         }
+    }
 
-        for (City c :
-                settledCities) {
-            for (City cc :
-                    c.getAdjacentyList())
-                if (cc.getName().equals(destination.getName())) {
-                    Train train = new Train(c.getShortestPath());
-                    train.getTrain().add(c);
-                    train.getTrain().add(destination);
-                    result.add(train);
-                }
-        }
-        if (result.isEmpty())
-            throw new PathDoesntExistException();
-        distance = result.get(0).getTrain().get(result.get(0).getTrain().size() - 1).getDistance();
-        return new Connection(result, distance);
+    private void init(Graph graph, City start, LinkedList<City> unsettledCities) {
+        unsettledCities.add(start);
+        graph.setTrainConnections(setDistanceInStartCity(graph.getTrainConnections(), start));
     }
 
     private Map<City, List<City>> setDistanceInStartCity(Map<City, List<City>> trainConnections, City start) {
