@@ -7,6 +7,7 @@ import com.vengard.trains.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -31,6 +32,10 @@ public class CityService {
         if (cityRepository.findCityByCity(city).isPresent())
             return null;
         return cityRepository.addCity(city);
+    }
+
+    public void zeroShortestPaths() {
+        findAll().forEach(c -> c.setShortestPath(new LinkedList<>()));
     }
 
     public void addCitiesFromTrain(Train train) {

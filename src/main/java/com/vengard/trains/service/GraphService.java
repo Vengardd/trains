@@ -26,6 +26,7 @@ public class GraphService {
 
     public Connection findShortestPath(String start, String destination) {
         setTrainConnectionsFromCities(cityService.findAll());
+        cityService.zeroShortestPaths();
         return findShortestPathAlgorithm.findShortestPath(graph, cityService.findCityByCity(start), cityService.findCityByCity(destination));
     }
     public void setTrainConnectionsFromCities(List<City> cities) {
